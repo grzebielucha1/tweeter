@@ -14,7 +14,7 @@ include("C:\\xampp\\htdocs\\workshop\\scr\\header.php");
 ?>
 			<button>Wiadomosci Odebrane</button>
 			<?php 
-		$sqlOdebrane="SELECT odbiorca.id as o_id FROM odbiorca JOIN message ON odbiorca.o_id=message.o_id JOIN nadawca ON nadawca.id=message.id Where odbiorca.o_id=" .$_POST['odbiorca_id']."";
+		$sqlOdebrane="SELECT * FROM wyslane JOIN message ON wyslane.odbiorca_id=message.odbiorca_id JOIN odebrane ON odebrane.nadawca_id=message.nadawca_id Where wyslane.odbiorca_id=" .$_POST['user_id']."";
 			$result = $conn->query($sqlOdebrane);
  
 				if ($result->num_rows > 0) {
