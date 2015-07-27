@@ -190,10 +190,8 @@ class User{
 
 	
 	
-	public function getAllMyMessages(mysqli $conn, $numberOfMessage) {
-        $sql = "SELECT * FROM Message WHERE user_id = '".$this->id."' LIMIT ".$numberOfMessage ;
-
-        #$sql = "SELECT * FROM Tweets";
+	public function getAllMessage(mysqli $conn, $numberOfMessage) {
+        $sql = "SELECT * FROM message WHERE user_id= '".$this->id."' LIMIT ".$numberOfMessage ;
 
         $result = $conn->query($sql);
         $retArray = array();
@@ -213,30 +211,6 @@ class User{
         return $retArray;
 
     }
-
-	public function getAllMessages(mysqli $conn) {
-        $sql = "SELECT * FROM Message ";
-
-
-        $result = $conn->query($sql);
-        $retArray = array();
-
-        var_dump($result);
-
-        if($result->num_rows >= 0) {
-            while($messageData = $result->fetch_assoc()) {
-
-                $getMessage = new Message();
-                $getMessage->loadFromDataBase($conn, $messageData['id']);
-
-                $retArray[] = $getMessage;
-
-            }
-        }
-        return $retArray;
-
-    }
-
 
 	
 	
